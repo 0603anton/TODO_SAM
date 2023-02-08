@@ -23,9 +23,9 @@ function App() {
 
     /*ADD*/
 
-    const addTask = (title:string) => {
+    const addTask = (title: string) => {
         const newTask = {id: v1(), title: title, isDone: true};
-        setTasks([...tasks,newTask])
+        setTasks([...tasks, newTask])
     }
 
     /*FILTER*/
@@ -43,6 +43,13 @@ function App() {
         tasksForTodoList = tasks.filter(t => t.isDone)
     }
 
+    /*ChangeStatus of checkbox*/
+
+    const changeStatus = (taskId: string, isDone: boolean) => {
+        setTasks(tasks.map(t => t.id === taskId ? {...t, isDone: isDone} : t))
+    }
+
+
     return (
         <div className="App">
             <Todolist
@@ -51,6 +58,8 @@ function App() {
                 removeTask={removeTask}
                 changeFilter={changeFilter}
                 addTask={addTask}
+                changeStatus={changeStatus}
+                filter={filter}
             />
         </div>
     );
